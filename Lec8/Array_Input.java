@@ -16,6 +16,7 @@ public class Array_Input {
 			arr[i] = sc.nextInt();
 
 		}
+		int []arr1 = takeinput();//2k
 		System.out.println("bye");
 		System.out.println("Cb");
 		display(arr);
@@ -23,16 +24,16 @@ public class Array_Input {
 
 	}
 
-//	public static  int [] takeinput() {
-//		Scanner sc = new Scanner(System.in);
-//		int n = sc.nextInt();
-//		int [] arr = new int [n];
-//		for (int i = 0; i < arr.length; i++) {
-//			arr[i]=sc.nextInt();
-//			
-//		}
-//		return arr;
-//	}
+	public static  int [] takeinput() {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int [] arr = new int [n];
+		for (int i = 0; i < arr.length; i++) {
+			arr[i]=sc.nextInt();
+			
+		}
+		return arr;
+	}
 	public static void display(int[] arr) {
 
 		for (int i = 0; i < arr.length; i++) {
