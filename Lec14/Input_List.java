@@ -10,7 +10,8 @@ public class Input_List {
 		// TODO Auto-generated method stub
 		ArrayList<Integer> list = new ArrayList<>();
 		Scanner sc = new Scanner(System.in);
-		for (int i = 0; i < 5; i++) {
+		int n = sc.nextInt();
+		for (int i = 0; i < n; i++) {
 			int a = sc.nextInt();
 			list.add(a);
 		}
