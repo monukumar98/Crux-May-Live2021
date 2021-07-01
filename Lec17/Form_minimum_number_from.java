@@ -7,13 +7,13 @@ public class Form_minimum_number_from {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
-	//	int t = sc.nextInt();
-//		while (t > 0) {
+		int t = sc.nextInt();
+	while (t > 0) {
 			String str = sc.next();
 			minimumnumber(str);
-		//	t--;
+			t--;
 
-	//	}
+		}
 
 	}
 
