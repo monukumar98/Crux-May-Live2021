@@ -25,14 +25,6 @@ public class Different_Ways_to_Add_Parentheses {
 			if (ch == '+' || ch == '-' || ch == '*') {
 				ArrayList<Integer> left = Parentheses(str.substring(0, i));
 				ArrayList<Integer> right = Parentheses(str.substring(i + 1));
-				if (ch == '+') {
-					for (int val : left) {
-						for (int val1 : right) {
-							ans.add(val + val1);
-						}
-					}
-				}
-
 				for (int val : left) {
 					for (int val1 : right) {
 						if (ch == '-') {
