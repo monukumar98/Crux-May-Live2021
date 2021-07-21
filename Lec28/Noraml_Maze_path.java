@@ -22,11 +22,14 @@ public class Noraml_Maze_path {
 		int row[] = { 1, 0, 0, -1 };
 		int col[] = { 0, 1, -1, 0 };
 		int ans = 0;
+		
+		
 		for (int i = 0; i < col.length; i++) {
 			maze[r][c] = true;
 			ans += countpath(maze, r + row[i], c + col[i]);
 		}
 		maze[r][c] = false;
+		
 		return ans;
 
 	}
