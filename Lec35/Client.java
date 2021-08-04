@@ -4,8 +4,8 @@ public class Client {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-//		 final int i=90;
-//		 i=89;
+		 final int i=90;
+		// i=89;
 		// Case 1
 		P obj = new P();
 		System.out.println(obj.d);// 3
@@ -25,7 +25,7 @@ public class Client {
 		((C)(obj1)).fun2();
 		
 		// Case 3
-//	   C obj2 = new P();
+//   C obj2 = new P();
 //	   System.out.println(obj2.d);
 //	   System.out.println(obj2.d1);
 //	   System.out.println(obj2.d2);//c

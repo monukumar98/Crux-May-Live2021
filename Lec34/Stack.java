@@ -2,8 +2,8 @@ package Lec34;
 
 public class Stack {
 
-	private int[] data;
-	int top;
+	protected int[] data;
+	private int top;
 
 	public Stack() {
 		// TODO Auto-generated constructor stub
