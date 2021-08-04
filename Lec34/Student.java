@@ -1,8 +1,11 @@
 package Lec34;
-
 public class Student {
 	private String name = "Motu";
 	private int age = 90;
+	public Student() {
+		// TODO Auto-generated constructor stub
+		
+	}
 
 	public int getAge() {
 		return age;

@@ -15,7 +15,7 @@ public class Randimize_Quick_Sort {
 	}
 
 	public static void QuickSort(int[] arr, int si, int ei) {
-		if (si > ei) {
+		if (si >= ei) {
 			return;
 		}
 		int pi = pratition(arr, si, ei);
@@ -35,14 +35,14 @@ public class Randimize_Quick_Sort {
 		int pi = si;
 		for (int i = si; i < ei; i++) {
 			if (arr[i] <= pivot) {
-				int temp = arr[i];
+				 temp = arr[i];
 				arr[i] = arr[pi];
 				arr[pi] = temp;
 				pi++;
 			}
 
 		}
-		int temp = arr[ei];
+		 temp = arr[ei];
 		arr[ei] = arr[pi];
 		arr[pi] = temp;
 		return pi;
