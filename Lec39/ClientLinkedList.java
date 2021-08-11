@@ -15,6 +15,7 @@ public class ClientLinkedList {
 		//list.display();
 		list.addatIndex(64, 0);
 		list.display();
+		
 //		System.out.println(list.getatIndex(3));
 //		System.out.println(list.getLast());
 //		System.out.println(list.getFirst());
@@ -23,6 +24,7 @@ public class ClientLinkedList {
 		System.out.println(list.delteLastatindex(2));
 		list.display();
 		System.out.println(list.size());
+		
 	}
 
 }
