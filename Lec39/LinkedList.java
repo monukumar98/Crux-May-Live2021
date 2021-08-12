@@ -1,5 +1,7 @@
 package Lec39;
 
+import com.sun.tools.classfile.StackMap_attribute.stack_map_frame;
+
 public class LinkedList {
 
 	private class Node {
@@ -215,6 +217,7 @@ public class LinkedList {
 
 	}
 
+	 
 	public void PointerReverseR() {
 		this.PointerReverseR(this.head, null);
 		Node temp = this.head;
@@ -261,7 +264,7 @@ public class LinkedList {
 	public int mid() {
 
 		return MidNode().data;
-		
+
 	}
 
 	private Node MidNode() {
@@ -286,6 +289,156 @@ public class LinkedList {
 //		}
 //		return slow;
 //	}
+
+	// Lec 41
+	public int kthfromlast(int k) {
+		Node slow = this.head;
+		Node fast = this.head;
+		for (int i = 1; i <= k; i++) {// kth distance
+			fast = fast.next;
+		}
+		// slow and fast ko Same Speed se
+		while (fast != null) {
+			slow = slow.next;
+			fast = fast.next;
+		}
+		return slow.data;
+
+	}
+
+	public void Create_Cycle() throws Exception {
+		Node node = GetNode(2);
+		this.tail.next = node;
+	}
+
+	public boolean floyed_cycle() {
+		Node fast = this.head;
+		Node slow = this.head;
+
+		while (fast != null && fast.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
+			if (slow == fast) {
+				return true;
+			}
+
+		}
+		return false;
+	}
+
+	public Node cycle_Node() {
+		Node fast = this.head;
+		Node slow = this.head;
+
+		while (fast != null && fast.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
+			if (slow == fast) {
+				return slow;
+			}
+
+		}
+		return null;
+	}
+
+// O(N^2)
+	public void Cycle_Removal1() {
+		Node meet = cycle_Node();// slow and fast ki meeting point
+		if (meet == null) {
+			return;
+		}
+		Node Start = this.head;
+		while (Start != null) {// 1k 2k 3k ........
+			// loop in cycle
+
+			Node temp = meet;
+			while (temp.next != meet) {
+				if (temp.next == Start) {
+					temp.next = null;
+					return;
+				}
+				temp = temp.next;
+			}
+			Start = Start.next;
+
+		}
+
+	}
+
+	// O(N)
+	public void Cycle_Removal2() {
+		Node meet = cycle_Node();// slow and fast ki meeting point
+		if (meet == null) {
+			return;
+		}
+		// Count Number Node in loop
+		int c = 1;
+		Node temp = meet;
+		while (temp.next != meet) {
+			temp = temp.next;
+			c++;
+		}
+		// fast N Step ahead
+		Node fast = this.head;
+		while (c > 0) {
+			fast = fast.next;
+			c--;
+		}
+		// slow and fast ko same Speed se
+
+		Node slow = this.head;
+		while (slow.next != fast.next) {
+			fast = fast.next;
+			slow = slow.next;
+		}
+		fast.next = null;
+
+	}
+
+	public void floyed_cycle_Removal() {
+		Node meet = cycle_Node();// slow and fast ki meeting point
+		if (meet == null) {
+			return;
+		}
+		Node fast = meet;
+		Node slow = this.head;
+		while (slow.next != fast.next) {
+			fast = fast.next;
+			slow = slow.next;
+		}
+		fast.next = null;
+	}
+
+	public void MergeTwoSortedList(LinkedList other) {
+		Node headA = this.head;
+		Node headB = other.head;
+		LinkedList temp = new LinkedList();
+		while (headA != null && headB != null) {
+			if (headA.data < headB.data) {
+				temp.addLast(headA.data);
+				headA = headA.next;
+			} else {
+				temp.addLast(headB.data);
+				headB = headB.next;
+			}
+
+		}
+		while (headA != null) {
+			temp.addLast(headA.data);
+			headA = headA.next;
+		}
+		while (headB != null) {
+			temp.addLast(headB.data);
+			headB = headB.next;
+		}
+	
+		this.head = temp.head;
+		this.tail = temp.tail;
+		this.size = temp.size;
+
+	}
+	
+
 
 	public int size() {
 		return this.size;
