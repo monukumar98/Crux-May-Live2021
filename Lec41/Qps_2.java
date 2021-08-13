@@ -16,8 +16,7 @@ public class Qps_2 {
 		list.addLast(78);
 		list.addLast(89);
 		list.display();
-		list.DataReverseI();
-		list.PointerReverseI();
+
 		list.display();
 
 		LinkedList list1 = new LinkedList();
@@ -35,16 +34,15 @@ public class Qps_2 {
 		System.out.println(list.floyed_cycle());
 		list.Cycle_Removal2();
 		System.out.println(list.floyed_cycle());
-		//list.display();
-		//list1.display();
-		// 
-		//list.MergeTwoSortedList(list, list1);
-		//list.MergeTwoSortedList(list1);
-		//list.display();
+		// list.display();
+		// list1.display();
+		//
+		// list.MergeTwoSortedList(list, list1);
+		// list.MergeTwoSortedList(list1);
+		// list.display();
 
 	}
-	
-	
+
 //	 public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
 //	        
 //	      ListNode A = headA;
