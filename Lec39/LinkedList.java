@@ -1,12 +1,21 @@
 package Lec39;
 
-import com.sun.tools.classfile.StackMap_attribute.stack_map_frame;
-
 public class LinkedList {
 
 	private class Node {
 		int data;
 		Node next;
+	}
+
+	public LinkedList() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public LinkedList(Node head, Node tail, int size) {
+		// TODO Auto-generated constructor stub
+		this.head=head;
+		this.tail=tail;
+		this.size=size;
 	}
 
 	private Node head;
@@ -176,7 +185,7 @@ public class LinkedList {
 		else {
 			Node ith_1 = GetNode(k - 1);// 2k
 			Node ith = ith_1.next;// 3k
-			ith_1.next = ith_1.next.Next;// 2k-->3k-->4k
+			ith_1.next = ith_1.next.next;// 2k-->3k-->4k
 			ith.next = null;// 3k-->null
 			this.size--;
 			return ith.data;
@@ -217,7 +226,6 @@ public class LinkedList {
 
 	}
 
-	 
 	public void PointerReverseR() {
 		this.PointerReverseR(this.head, null);
 		Node temp = this.head;
@@ -409,7 +417,8 @@ public class LinkedList {
 		fast.next = null;
 	}
 
-	public void MergeTwoSortedList(LinkedList other) {
+	
+	public LinkedList MergeTwoSortedList(LinkedList other) {
 		Node headA = this.head;
 		Node headB = other.head;
 		LinkedList temp = new LinkedList();
@@ -431,14 +440,27 @@ public class LinkedList {
 			temp.addLast(headB.data);
 			headB = headB.next;
 		}
-	
-		this.head = temp.head;
-		this.tail = temp.tail;
-		this.size = temp.size;
+
+		return temp;
 
 	}
-	
 
+	public LinkedList MeregSort() {
+		if (this.size == 1) {
+			return new LinkedList(this.head,this.tail,1);
+
+		}
+		Node mid = this.MidNode();
+		Node mid_next=mid.next;
+		mid.next=null;
+		LinkedList ll1 = new LinkedList(this.head, mid, (this.size+1)/2);
+		LinkedList ll2 = new LinkedList(mid_next, this.tail, (this.size)/2);
+		ll1=ll1.MeregSort();
+		ll2=ll2.MeregSort();
+		return ll1.MergeTwoSortedList(ll2);
+		
+
+	}
 
 	public int size() {
 		return this.size;
