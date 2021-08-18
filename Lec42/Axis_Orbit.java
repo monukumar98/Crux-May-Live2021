@@ -23,8 +23,8 @@ public class Axis_Orbit {
 
 			}
 		}
-		
-		//even
+
+		// even
 		for (double axis = 0.5; axis < str.length(); axis++) {
 
 			for (double orbit = 0.5; axis - orbit >= 0 && axis + orbit < str.length(); orbit++) {
@@ -38,7 +38,6 @@ public class Axis_Orbit {
 			}
 		}
 		return count;
-		
 
 	}
 
