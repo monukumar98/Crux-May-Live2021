@@ -13,9 +13,9 @@ public class Client_BinaryTree {
 		bt.PerOrder();
 		bt.postOrder();
 		bt.InOder();
-//		bt.LevelOrder();
-//		bt.LevelOrderLevelwise1();
-//		bt.LevelOrderLevelwise2();
+		bt.LevelOrder();
+		bt.LevelOrderLevelwise1();
+		bt.LevelOrderLevelwise2();
 		bt.Zig_ZagOrder();
 		
 		
