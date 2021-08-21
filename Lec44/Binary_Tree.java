@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
+import Lec45.TreeNode;
+
 public class Binary_Tree {
 	Scanner sc = new Scanner(System.in);
 
@@ -299,10 +301,81 @@ public class Binary_Tree {
 			} else {
 				Collections.reverse(list);
 				System.out.println(list);
-		}
+			}
 			level++;
 			System.out.println();
 		}
+
+	}
+
+	public int diameterOfBinaryTree(Node node) {
+
+		if (node == null) {
+			return 0;
+		}
+
+		int ld = diameterOfBinaryTree(node.left);
+		int rd = diameterOfBinaryTree(node.right);
+		int sd = ht(node.left) + ht(node.right) + 2;
+		return Math.max(sd, Math.max(ld, rd));
+
+	}
+
+	// OPtimize
+
+	private class DiaPair {
+		int ht = -1;
+		int dia = 0;
+	}
+
+	public DiaPair diameterOfBinaryTree2(Node node) {
+		if (node == null) {
+			return new DiaPair();
+		}
+
+		DiaPair ldp = diameterOfBinaryTree2(node.left);
+		DiaPair rdp = diameterOfBinaryTree2(node.right);
+		DiaPair sdp = new DiaPair();
+		int sd = ldp.ht + rdp.ht + 2;
+		int ht = Math.max(ldp.ht, rdp.ht) + 1;
+		sdp.dia = Math.max(ldp.dia, Math.max(rdp.dia, sd));
+		sdp.ht = ht;
+		return sdp;
+
+	}
+
+	public boolean isBalanced(Node node) {
+
+		if (node == null) {
+			return true;
+		}
+
+		boolean lb = isBalanced(node.left);
+		boolean rb = isBalanced(node.right);
+		int bf = Math.abs(ht(node.left) - ht(node.right));
+		return lb && rb && bf <= 1;
+
+	}
+
+	private class IsBalanced {
+		int ht = -1;
+		boolean bal = true;
+
+	}
+
+	public IsBalanced isBalanced2(Node node) {
+
+		if (node == null) {
+			return new IsBalanced();
+		}
+
+		IsBalanced lbp = isBalanced2(node.left);
+		IsBalanced rbp = isBalanced2(node.right);
+		IsBalanced sbp = new IsBalanced();
+		int bf = Math.abs(lbp.ht - rbp.ht);
+		sbp.ht = Math.max(lbp.ht, rbp.ht) + 1;
+		sbp.bal = (lbp.bal && rbp.bal && bf <= 1);
+		return sbp;
 
 	}
 
