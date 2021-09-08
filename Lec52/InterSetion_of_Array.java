@@ -30,9 +30,9 @@ public class InterSetion_of_Array {
 		ArrayList<Integer> ans = new ArrayList<Integer>();
 
 		for (int i = 0; i < arr1.length; i++) {
-			if (map.containsKey(arr[i]) && map.get(arr[i]) != 0) {
-				ans.add(arr[i]);
-				map.put(arr[i], map.get(arr[i]) - 1);
+			if (map.containsKey(arr1[i]) && map.get(arr1[i]) != 0) {
+				ans.add(arr1[i]);
+				map.put(arr1[i], map.get(arr1[i]) - 1);
 
 			}
 
