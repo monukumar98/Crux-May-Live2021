@@ -56,7 +56,7 @@ public class Is_Bst {
 		if (node.right == null) {
 			return node.val;
 		}
-		return min(node.right);
+		return max(node.right);
 
 	}
 

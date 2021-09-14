@@ -39,7 +39,7 @@ public class String_Demo {
 		System.out.println(str3.startsWith("hel"));
 		
 		System.out.println(str3.endsWith("bye"));
-		 append();
+		 //append();
         
 
  
