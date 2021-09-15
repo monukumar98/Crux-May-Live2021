@@ -1,5 +1,6 @@
 package Lec57;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -146,7 +147,7 @@ public class Graph {
 		return false;
 
 	}
-	
+
 	public boolean DFS(int src, int dis) {
 		Stack<Integer> s = new Stack<>();
 		HashSet<Integer> visited = new HashSet<>();
@@ -179,6 +180,203 @@ public class Graph {
 		}
 		return false;
 
+	}
+
+	public void BFT() {
+		Queue<Integer> q = new LinkedList<Integer>();
+		HashSet<Integer> visited = new HashSet<>();
+		for (int src : map.keySet()) {
+
+			// jo Vtx Already marked usko Ignore kr rahe ho
+			if (visited.contains(src)) {
+				continue;
+			}
+
+			q.add(src);
+
+			while (!q.isEmpty()) {
+				// 1st remove
+				int rv = q.remove();
+
+				// Ignore
+				if (visited.contains(rv)) {
+					continue;
+				}
+				System.out.print(rv + " ");
+				// Visited Mark
+				visited.add(rv);
+
+				// nbrs
+				for (int nbrs : map.get(rv).keySet()) {
+					if (!visited.contains(nbrs)) {
+						q.add(nbrs);
+					}
+
+				}
+
+			}
+		}
+	}
+
+	public void DFT() {
+		Stack<Integer> s = new Stack<Integer>();
+		HashSet<Integer> visited = new HashSet<>();
+		for (int src : map.keySet()) {
+
+			if (visited.contains(src)) {
+				continue;
+			}
+			s.push(src);
+
+			while (!s.isEmpty()) {
+				// 1st remove
+				int rv = s.pop();
+
+				// Ignore
+				if (visited.contains(rv)) {
+					continue;
+				}
+				System.out.print(rv + " ");
+				// Visited Mark
+				visited.add(rv);
+
+				// nbrs
+				for (int nbrs : map.get(rv).keySet()) {
+					if (!visited.contains(nbrs)) {
+						s.push(nbrs);
+					}
+
+				}
+			}
+
+		}
+	}
+
+	public boolean isCycle() {
+		Queue<Integer> q = new LinkedList<Integer>();
+		HashSet<Integer> visited = new HashSet<>();
+		for (int src : map.keySet()) {
+
+			// jo Vtx Already marked usko Ignore kr rahe ho
+			if (visited.contains(src)) {
+				continue;
+			}
+
+			q.add(src);
+
+			while (!q.isEmpty()) {
+				// 1st remove
+				int rv = q.remove();
+
+				// Ignore
+				if (visited.contains(rv)) {
+					return true;
+				}
+
+				// Visited Mark
+				visited.add(rv);
+
+				// nbrs
+				for (int nbrs : map.get(rv).keySet()) {
+					if (!visited.contains(nbrs)) {
+						q.add(nbrs);
+					}
+
+				}
+
+			}
+		}
+		return false;
+	}
+
+	public boolean IsConnacted() {
+
+		Queue<Integer> q = new LinkedList<Integer>();
+		HashSet<Integer> visited = new HashSet<>();
+		int count = 0;
+		for (int src : map.keySet()) {
+
+			// jo Vtx Already marked usko Ignore kr rahe ho
+			if (visited.contains(src)) {
+				continue;
+			}
+			count++;
+
+			q.add(src);
+
+			while (!q.isEmpty()) {
+				// 1st remove
+				int rv = q.remove();
+
+				// Ignore
+				if (visited.contains(rv)) {
+					continue;
+				}
+
+				// Visited Mark
+				visited.add(rv);
+
+				// nbrs
+				for (int nbrs : map.get(rv).keySet()) {
+					if (!visited.contains(nbrs)) {
+						q.add(nbrs);
+					}
+
+				}
+
+			}
+		}
+		
+		return count == 1;
+
+	}
+
+	public ArrayList<ArrayList<Integer>> GetAll_Connacted() {
+
+		Queue<Integer> q = new LinkedList<Integer>();
+		HashSet<Integer> visited = new HashSet<>();
+		ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+		int count = 1;
+		for (int src : map.keySet()) {
+
+			// jo Vtx Already marked usko Ignore kr rahe ho
+			if (visited.contains(src)) {
+				continue;
+			}
+			count++;
+			ArrayList<Integer> list = new ArrayList<>();
+			q.add(src);
+
+			while (!q.isEmpty()) {
+				// 1st remove
+				int rv = q.remove();
+
+				// Ignore
+				if (visited.contains(rv)) {
+					continue;
+				}
+
+				// Visited Mark
+				visited.add(rv);
+				list.add(rv);
+
+				// nbrs
+				for (int nbrs : map.get(rv).keySet()) {
+					if (!visited.contains(nbrs)) {
+						q.add(nbrs);
+					}
+
+				}
+
+			}
+			ans.add(list);
+		}
+		return ans;
+
+	}
+
+	public boolean isTree() {
+		return (!isCycle()) && IsConnacted();
 	}
 
 }
