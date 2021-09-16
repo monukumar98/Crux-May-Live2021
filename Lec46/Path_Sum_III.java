@@ -34,7 +34,9 @@ public class Path_Sum_III {
 		}
 
 		public int countpath(TreeNode root, int targetSum) {
-
+             if(root==null) {
+            	 return 0;
+             }
 			int ans = 0;
 			if (targetSum - root.val == 0) {
 				ans++;

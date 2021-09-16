@@ -35,11 +35,11 @@ public class Bipartite {
 	    	//HashMap<Integer,BipartitePair> visited = new HashMap<>();
         Queue<BipartitePair> q = new LinkedList<>();
         BipartitePair[] visited = new BipartitePair[graph.length];
-        System.out.println(Arrays.toString(visited));
+      
 		        
 		        int n = graph.length-1;
 		        
-		        for (int i=0; i<n; i++) {
+		        for (int i=0; i<=n; i++) {
 
 					// jo Vtx Already marked usko Ignore kr rahe ho
 					if (visited[i]!=null) {
@@ -54,7 +54,7 @@ public class Bipartite {
 						BipartitePair rv = q.remove();
 
 						// Ignore
-						if (visited[rv.vt]!=null) {
+						if (visited[rv.vt]!=null && visited[rv.vt].vt==rv.vt) {
 							if(rv.lv!=visited[rv.vt].lv) {
 								return false;
 							}

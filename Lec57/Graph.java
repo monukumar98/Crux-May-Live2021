@@ -1,11 +1,15 @@
 package Lec57;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
+
+import Lec59.Disjoint_Set_Union;
 
 public class Graph {
 	HashMap<Integer, HashMap<Integer, Integer>> map = new HashMap<>();
@@ -326,7 +330,7 @@ public class Graph {
 
 			}
 		}
-		
+
 		return count == 1;
 
 	}
@@ -377,6 +381,123 @@ public class Graph {
 
 	public boolean isTree() {
 		return (!isCycle()) && IsConnacted();
+	}
+
+	public void Kruskal() {
+		Disjoint_Set_Union ds = new Disjoint_Set_Union();
+		for (int key : map.keySet()) {
+			ds.Create(key);
+
+		}
+		ArrayList<Edge> list = getAllEdge();
+		Collections.sort(list);
+		for (int i = 0; i < list.size(); i++) {
+			Edge eg = list.get(i);
+			int r1 = ds.find(eg.vt1);
+			int r2 = ds.find(eg.vt2);
+
+			if (r1 == r2) {
+				// do nothing
+			} else {
+				System.out.println(eg);
+				ds.unoin(r1, r2);
+			}
+
+		}
+
+	}
+
+	public ArrayList<Edge> getAllEdge() {
+		ArrayList<Edge> ans = new ArrayList<>();
+
+		for (int key : map.keySet()) {
+
+			for (int nbrs : map.get(key).keySet()) {
+				Edge eg = new Edge(key, nbrs, map.get(key).get(nbrs));
+				ans.add(eg);
+			}
+
+		}
+
+		return ans;
+
+	}
+
+	public class Edge implements Comparable<Edge> {
+
+		int vt1;
+		int vt2;
+		int cost;
+
+		public Edge(int v1, int v2, int cost) {
+			// TODO Auto-generated constructor stub
+			this.vt1 = v1;
+			this.vt2 = v2;
+			this.cost = cost;
+		}
+
+		public String toString() {
+			return this.vt1 + "-->" + vt2 + " @ " + this.cost;
+		}
+
+		@Override
+		public int compareTo(Edge o) {
+			// TODO Auto-generated method stub
+			return this.cost - o.cost;
+		}
+
+	}
+
+	public class PrimsPair  implements Comparable<PrimsPair>{
+		int vt;
+		int Acqvt;
+		int cost;
+
+		public PrimsPair(int vt, int acqvt, int cost) {
+			// TODO Auto-generated constructor stub
+			this.vt = vt;
+			this.Acqvt = acqvt;
+			this.cost = cost;
+
+		}
+		public String toString() {
+			return this.vt + " vai " + this.Acqvt + " @ " + this.cost;
+		}
+		@Override
+		public int compareTo(PrimsPair o) {
+			// TODO Auto-generated method stub
+			return this.cost-o.cost;
+		}
+	}
+	public void Prims() {
+		HashSet<Integer> visited = new HashSet<>();
+		PriorityQueue<PrimsPair> q = new PriorityQueue<>();
+		q.add(new PrimsPair(1, 1, 0));
+		while(!q.isEmpty()) {
+			PrimsPair rp = q.remove();
+			
+			if(visited.contains(rp.vt)) {
+				continue;
+			}
+			
+			visited.add(rp.vt);
+			System.out.println(rp);
+			
+			for (int nbrs : map.get(rp.vt).keySet()) {
+				if(!visited.contains(nbrs)) {
+					PrimsPair p = new PrimsPair(nbrs, rp.vt, map.get(rp.vt).get(nbrs));
+				  q.add(p);
+				}
+				
+				
+			}
+			
+			
+			
+		}
+		
+		
+		
 	}
 
 }
