@@ -66,7 +66,7 @@ public class Bipartite {
 
 						// nbrs
 						for (int nbrs : graph[rv.vt] ) {
-							if (visited[rv.vt]!=null) {
+							if (visited[rv.vt]==null) {
 								BipartitePair np = new BipartitePair(nbrs, rv.lv+1);
 								q.add(np);
 								
